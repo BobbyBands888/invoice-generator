@@ -20,7 +20,13 @@
         button:hover { transform: translateY(-1px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
         .action-btn { background: #635bff; color: white; width: 100%; margin-top: 15px; padding: 14px; font-size: 16px; font-weight: bold; border-radius: 6px; border: none; cursor: pointer; }
         
-        /* REVENUE ACCELERATOR: PREMIUM PREVIEW BLOCK */
+        /* LEAD FUNNEL STYLING */
+        .email-box { margin-top: 20px; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+        .email-form { display: flex; gap: 10px; margin-top: 8px; }
+        .email-input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        .email-btn { background: #222; color: white; border: none; padding: 10px 15px; font-size: 13px; font-weight: bold; border-radius: 4px; cursor: pointer; margin: 0; box-shadow: none; }
+        .email-btn:hover { background: #444; transform: none; }
+
         .premium-showcase { grid-column: span 2; margin-top: 40px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #e3e6e8; }
         .showcase-header { text-align: center; margin-bottom: 25px; }
         .showcase-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
@@ -31,7 +37,7 @@
         
         @media print {
             body { background: white; padding: 0; }
-            nav, .upgrade-banner, .action-btn, h3, textarea, .premium-showcase { display: none !important; }
+            nav, .upgrade-banner, .action-btn, h3, textarea, .premium-showcase, .email-box { display: none !important; }
             .container { display: block; padding: 0; }
             .preview { box-shadow: none; padding: 0; }
         }
@@ -75,6 +81,16 @@ Upon full payment, all intellectual property rights for the developed software t
 ### Signatures
 **Client:** _______________________  
 **Contractor:** _______________________</textarea>
+        
+        <!-- EMEDDED FORMSPREE CAPTURE LAYER -->
+        <div class="email-box">
+            <strong style="font-size: 14px; color: #222;">📧 Back up Contract configuration:</strong>
+            <form action="https://formspree.io/f/xdaraydn" method="POST" class="email-form">
+                <input type="email" name="email" class="email-input" placeholder="Enter email to back up data..." required />
+                <button type="submit" class="email-btn">Save Progress</button>
+            </form>
+        </div>
+
         <button id="print-button" class="action-btn">Download / Print Agreement PDF</button>
     </div>
     
@@ -83,7 +99,6 @@ Upon full payment, all intellectual property rights for the developed software t
         <div id="preview" class="preview"></div>
     </div>
 
-    <!-- VISUAL CONVERSION ENGINE -->
     <div class="premium-showcase">
         <div class="showcase-header">
             <h3 style="margin: 0 0 5px 0; color: #222;">Included in the $5 Premium Pack:</h3>
