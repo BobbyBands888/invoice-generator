@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SleekReceipt - Free Markdown Receipt Generator & PDF Exporter</title>
+    <meta name="description" content="Generate clean, professional itemized receipts instantly using simple Markdown. Free tool for freelancers, contractors, landlords, and small businesses. Print to PDF.">
+    <meta name="keywords" content="markdown receipt, free receipt generator, itemized receipt template, printable receipt maker, simple sales receipt">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f5f6; margin: 0; padding: 0 0 40px 0; }
+        nav { text-align: center; padding: 15px; background: #fff; margin-bottom: 20px; border-bottom: 1px solid #ddd; }
+        nav a { text-decoration: none; font-size: 15px; }
+        .container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 0 20px; }
+        textarea { width: 100%; height: 500px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; box-sizing: border-box; resize: vertical; }
+        .preview { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); box-sizing: border-box; min-height: 500px; }
+        .upgrade-banner { grid-column: span 2; background: #635bff; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; }
+        button { background: white; color: #635bff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px; transition: opacity 0.2s; }
+        button:hover { opacity: 0.9; }
+        .action-btn { background: #635bff; color: white; width: 100%; margin-top: 15px; padding: 12px; font-size: 15px; }
+        @media print {
+            body { background: white; padding: 0; }
+            nav, .upgrade-banner, .action-btn, h3, textarea { display: none !important; }
+            .container { display: block; padding: 0; }
+            .preview { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <strong style="color: #635bff; margin-right: 20px;">SleekSuite:</strong>
+    <a href="index.html" style="margin-right: 20px; color: #635bff;">📝 Invoice Generator</a>
+    <a href="contract.html" style="margin-right: 20px; color: #635bff;">📄 Contract Generator</a>
+    <a href="receipt.html" style="color: #333; font-weight: bold;">🧾 Receipt Generator</a>
+</nav>
+
+<div class="container">
+    <div class="upgrade-banner">
+        <h2>Need Premium, Audit-Proof Receipt & Expense Templates?</h2>
+        <p>Unlock 10+ professional tax-compliant designs instantly for just $5.</p>
+        <button id="checkout-button">Unlock Premium Templates</button>
+    </div>
+    
+    <div>
+        <h3>1. Edit Receipt Details Here</h3>
+        <textarea id="markdown-input"># PAYMENT RECEIPT
+
+**Receipt Number:** #REC-8849  
+**Payment Date:** 2026-06-24  
+**Payment Method:** Credit Card (ending in 4242)  
+
+### Received From:
+John Doe  
+johndoe@email.com  
+
+### Paid To:
+[Your Name/Business]  
+
+---
+
+### Items Paid:
+* 1x Branding & Logo Design Consultation - **$450.00**
+* 1x Domain Transfer Setup Fee - **$50.00**
+
+### **TOTAL PAID: $500.00**
+
+*Thank you for your prompt business payment!*</textarea>
+        <button id="print-button" class="action-btn">Download / Print Receipt PDF</button>
+    </div>
+    
+    <div>
+        <h3>2. Live Preview</h3>
+        <div id="preview" class="preview"></div>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById('markdown-input');
+    const preview = document.getElementById('preview');
+    function updatePreview() { preview.innerHTML = marked.parse(input.value); }
+    input.addEventListener('input', updatePreview);
+    updatePreview();
+    document.getElementById('print-button').addEventListener('click', () => { window.print(); });
+    document.getElementById('checkout-button').addEventListener('click', () => {
+        window.location.href = "https://buy.stripe.com/8x26oId0F02fgC95SD9EI00";
+    });
+</script>
+</body>
+</html>
