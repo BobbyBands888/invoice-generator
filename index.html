@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SleekInvoice - Free Markdown Invoice Generator</title>
+    
+    <!-- ZERO-DOLLAR SEO ENGINE -->
+    <title>SleekInvoice - Free Markdown Invoice Generator & PDF Exporter</title>
+    <meta name="description" content="Create professional, clean invoices instantly using simple Markdown. Live preview, print to PDF, and unlock premium compliance templates. Free for freelancers and contractors.">
+    <meta name="keywords" content="markdown invoice, free invoice generator, simple invoice pdf, freelancer invoice tool, slick invoice template">
+    
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://js.stripe.com/v3/"></script>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f5f6; margin: 0; padding: 40px; }
         .container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        textarea { width: 100%; height: 500px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; box-sizing: border-box; }
+        textarea { width: 100%; height: 500px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: monospace; font-size: 14px; box-sizing: border-box; resize: vertical; }
         .preview { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); box-sizing: border-box; min-height: 500px; }
         .upgrade-banner { grid-column: span 2; background: #635bff; color: white; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; }
-        button { background: white; color: #635bff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px; }
+        button { background: white; color: #635bff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer; margin-top: 10px; transition: opacity 0.2s; }
+        button:hover { opacity: 0.9; }
+        .action-btn { background: #635bff; color: white; width: 100%; margin-top: 15px; padding: 12px; font-size: 15px; }
+        
+        /* Ensures the upgrade banner doesn't break your users' clean printed invoice PDFs */
+        @media print {
+            body { background: white; padding: 0; }
+            .upgrade-banner, .action-btn, h3, textarea { display: none !important; }
+            .container { display: block; }
+            .preview { box-shadow: none; padding: 0; }
+        }
     </style>
 </head>
 <body>
@@ -27,8 +42,8 @@
     <div>
         <h3>1. Type Markdown Here</h3>
         <textarea id="markdown-input"># INVOICE: #1024
-**Date:** 2026-06-22  
-**Due Date:** 2026-07-22  
+**Date:** 2026-06-24  
+**Due Date:** 2026-07-24  
 
 ### Bill To:
 Acme Corp  
@@ -39,10 +54,11 @@ Acme Corp
 * Cloud Hosting Setup - **$150.00**
 
 ## TOTAL DUE: $2,150.00</textarea>
+        <button id="print-button" class="action-btn">Download / Print PDF</button>
     </div>
     
     <div>
-        <h3>2. Live Preview (Print to PDF)</h3>
+        <h3>2. Live Preview</h3>
         <div id="preview" class="preview"></div>
     </div>
 </div>
@@ -57,6 +73,11 @@ Acme Corp
 
     input.addEventListener('input', updatePreview);
     updatePreview(); // Initial load
+
+    // Print functionality
+    document.getElementById('print-button').addEventListener('click', () => {
+        window.print();
+    });
 
     // Stripe Redirection Button Logic
     document.getElementById('checkout-button').addEventListener('click', () => {
