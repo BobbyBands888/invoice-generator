@@ -9,12 +9,22 @@
         nav { text-align: center; padding: 15px; background: #fff; margin-bottom: 20px; border-bottom: 1px solid #ddd; }
         nav a { text-decoration: none; font-size: 15px; }
         .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+        
+        /* LOCKED STATE STYLING */
         .vault-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; border: 1px solid #e3e6e8; margin-top: 20px; }
         .lock-icon { font-size: 50px; margin-bottom: 15px; }
         .premium-btn { background: #635bff; color: white; border: none; padding: 14px 35px; font-weight: bold; font-size: 16px; border-radius: 6px; cursor: pointer; margin-top: 20px; box-shadow: 0 4px 6px rgba(99,91,255,0.2); transition: transform 0.2s; }
         .premium-btn:hover { transform: translateY(-1px); background: #4320af; }
         .resource-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; text-align: left; }
         .preview-item { background: #fafafa; padding: 15px; border-radius: 6px; border: 1px solid #eee; }
+        
+        /* UNLOCKED UNIVERSE STYLING */
+        .unlocked-vault { display: none; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #10b981; margin-top: 20px; }
+        .success-badge { background: #e6f4ea; color: #137333; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        code, pre { background: #f4f5f6; padding: 15px; border-radius: 6px; display: block; font-family: monospace; white-space: pre-wrap; font-size: 13px; border: 1px solid #ddd; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+        th { background: #fafafa; color: #222; }
     </style>
 </head>
 <body>
@@ -28,7 +38,8 @@
 </nav>
 
 <div class="container">
-    <div class="vault-card">
+    <!-- STATE 1: LOCKED VIEW (Default) -->
+    <div id="locked-view" class="vault-card">
         <div class="lock-icon">🔒</div>
         <h2 style="margin: 0 0 10px 0; font-size: 26px;">Unlock the Freelance Client Acquisition Vault</h2>
         <p style="margin: 0 color: #666; font-size: 15px; max-width: 600px; margin: 0 auto;">Gain instant access to our master database of premium remote agencies, contract negotiation playbooks, and cold outreach scripts engineered to secure high-ticket clients.</p>
@@ -38,7 +49,7 @@
         <div class="resource-preview">
             <div class="preview-item">
                 <strong style="color: #222;">📁 500+ Agency Inbound Lead List</strong>
-                <p style="margin: 5px 0 0 0; font-size: 13px; color: #666;">Verified corporate contacts, procurement emails, and hiring remote budgets updated weekly. [LOCKED]</p>
+                <p style="margin: 5px 0 0 0; font-size: 13px; color: #666;">Verified corporate contacts, procurement platforms, and hiring remote budgets updated weekly. [LOCKED]</p>
             </div>
             <div class="preview-item">
                 <strong style="color: #222;">📜 The 6-Figure Retainer Contract Script</strong>
@@ -46,12 +57,99 @@
             </div>
         </div>
     </div>
+
+    <!-- STATE 2: UNLOCKED VIEW (Visible only after successful Stripe redirect) -->
+    <div id="unlocked-view" class="unlocked-vault">
+        <div class="success-badge">✓ Payment Verified • Vault Unlocked</div>
+        <h2 style="margin: 0 0 5px 0; font-size: 28px;">Welcome to the Inner Circle</h2>
+        <p style="margin-0; color: #555; font-size: 15px; margin-bottom: 30px;">Your transaction was processed securely. Below are your dynamic digital client pipeline files. Bookmark this URL to preserve your private access token.</p>
+        
+        <h3 style="border-bottom: 2px solid #222; padding-bottom: 8px; margin-top: 30px;">Asset 1: Premium Remote Agency Placement Networks</h3>
+        <p style="font-size: 14px; color: #666;">Apply directly to these high-budget placement hubs that match vetted talent with premium enterprise clients. Bypass traditional job boards entirely.</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Agency Network</th>
+                    <th>Target Industry</th>
+                    <th>Average Contract Rate</th>
+                    <th>Portal Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Toptal</strong></td>
+                    <td>Dev / Design / Finance</td>
+                    <td>$60 - $150 / hr</td>
+                    <td><a href="https://www.toptal.com" target="_blank">toptal.com</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Gun.io</strong></td>
+                    <td>Software Engineering</td>
+                    <td>$75 - $160 / hr</td>
+                    <td><a href="https://www.gun.io" target="_blank">gun.io</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Braintrust</strong></td>
+                    <td>Web3 / Enterprise Tech</td>
+                    <td>$80 - $200 / hr</td>
+                    <td><a href="https://www.usebraintrust.com" target="_blank">usebraintrust.com</a></td>
+                </tr>
+                <tr>
+                    <td><strong>A-Team</strong></td>
+                    <td>Product Teams / Builders</td>
+                    <td>$90 - $180 / hr</td>
+                    <td><a href="https://www.a-team.works" target="_blank">a-team.works</a></td>
+                </tr>
+                <tr>
+                    <td><strong>10x Management</strong></td>
+                    <td>Senior Engineering Elite</td>
+                    <td>$100+ / hr</td>
+                    <td><a href="https://10xmanagement.com" target="_blank">10xmanagement.com</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="border-bottom: 2px solid #222; padding-bottom: 8px; margin-top: 40px;">Asset 2: The 6-Figure Inbound Retainer Script</h3>
+        <p style="font-size: 14px; color: #666;">Copy, modify, and drop this exact outbound markdown structure via cold email or LinkedIn message to secure multi-month engineering agreements.</p>
+        
+        <pre><code>## ATTN: [Head of Product / Engineering]
+
+**Subject:** Technical Systems Capacity - SleekSuite Integration Options
+
+Hi [Name],
+
+I noticed your engineering organization has been scaling operations across your core applications. Frequently, growing platforms experience critical developer velocity bottlenecks when managing localized transaction systems or client-facing documentation modules.
+
+I specialize in building zero-maintenance, performance-optimized micro-tools utilizing lightweight layout engines that interface natively with secure processing pipelines like Stripe. 
+
+I have open technical availability for a dedicated multi-month development retainer starting next month to look under the hood of your layout structures and secure your deployment velocity.
+
+**Core Focus Areas:**
+1. Zero-dependency custom framework deployments.
+2. Lightweight transaction loop design (Vanilla JS optimization).
+3. Serverless Vercel cloud integrations.
+
+Are you available for a brief 10-minute engineering alignment evaluation call this Thursday at 2:00 PM?
+
+Best regards,  
+[Your Name]  
+Senior Systems Architect, SleekSuite</code></pre>
+    </div>
 </div>
 
 <script>
+    // Standard Stripe Checkout Link Redirect
     document.getElementById('vault-trigger').addEventListener('click', () => {
         window.location.href = "https://buy.stripe.com/9B68wQ8Kp3erclT94P9EI01";
     });
+
+    // AUTO-FULFILLMENT ENGINE: Check URL for Stripe session queries
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('session_id') || window.location.href.includes('stripe')) {
+        document.getElementById('locked-view').style.display = 'none';
+        document.getElementById('unlocked-view').style.display = 'block';
+    }
 </script>
 </body>
 </html>
